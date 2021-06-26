@@ -1,0 +1,6 @@
+.idea/
+bot_login_times.log
+deletion_times.log
+discord_debug.log
+message_ids.txt
+venv/
