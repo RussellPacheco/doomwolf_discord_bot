@@ -1,8 +1,11 @@
+from dotenv import load_dotenv
 import discord
 from discord.ext import commands
 import logging
 from datetime import datetime
+import os
 
+load_dotenv()
 
 ####################
 #
@@ -25,25 +28,15 @@ BOBSANDERS_TEST_SERVER_GENERAL_CHANNEL = 857208225974452247
 BOBSANDERS_ID = 636913307605008407
 PERSONAL_ID_LIST = [BOBSANDERS_ID, ]
 
-
-####################
-#
-# Bot Config
-#
-####################
-
-BOT_TOKEN = "ODU3MTY5OTI0NDg5MjE2MDUw.YNLrsw.i7NzlM4KlVLZ3d9gtTNaGtBCfI0"
-
-
 ####################
 #
 # Passive Deletion Time Config
 #
 ####################
 
-TIME = "minute"  # "day", "hour", or "minute"
+TIME = "day"  # "day", "hour", or "minute"
 AMOUNT_TIME = 1
-AMOUNT_TO_PASSIVE_DELETE = 1
+AMOUNT_TO_PASSIVE_DELETE = 24 #how many messages to passively delete.
 
 
 ####################
@@ -246,8 +239,6 @@ async def getallmessages(ctx):
     try:
         counter = 0
 
-
-
         async for message in ctx.history(limit=None):
             counter += 1
 
@@ -385,4 +376,4 @@ async def getmessagecount(ctx):
     await ctx.send(f"There are {len(total_messages)} messages in the channel")
 
 
-bot.run(BOT_TOKEN)
+bot.run(os.getenv("BOT_TOKEN"))
