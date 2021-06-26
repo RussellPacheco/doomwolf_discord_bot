@@ -1,4 +1,4 @@
-#Discord Message Delete Bot
+<h1>Discord Message Delete Bot</h1>
 
  <!-- TABLE OF CONTENTS -->
 <details open="open">
