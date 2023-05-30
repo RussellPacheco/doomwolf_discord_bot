@@ -5,3 +5,6 @@ discord_debug.log
 message_ids.txt
 venv/
 .env
+env/
+__pycache__/
+*.log

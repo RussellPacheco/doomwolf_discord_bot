@@ -1,0 +1,15 @@
+class Common:
+    ### CHANNELS
+    OFF_TOPIC_CHANNEL = 824643646748885022
+    BB_GENERAL_CHANNEL = 711441407914672162
+    BB_TEST_CHANNEL = 858188090610155530
+    BOBSANDERS_TEST_SERVER_GENERAL_CHANNEL = 857208225974452247
+
+    ### Allowed Users IDs
+    BOBSANDERS_ID = 636913307605008407
+    PERSONAL_ID_LIST = [BOBSANDERS_ID, ]
+
+    ### Passive Deletion Time Config
+    TIME = "day"  # "day", "hour", or "minute"
+    AMOUNT_TIME = 1
+    AMOUNT_TO_PASSIVE_DELETE = 24 #how many messages to passively delete.
