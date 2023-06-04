@@ -18,7 +18,7 @@ async def on_ready():
 
 @BOT.event
 async def on_message(message):
-    channel = BOT.get_channel(Common.BB_TEST_CHANNEL)
+    print(f"Message: {message.content}")
 
     if message.author == BOT.user:
         return
