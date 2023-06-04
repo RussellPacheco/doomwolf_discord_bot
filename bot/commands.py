@@ -1,8 +1,9 @@
-from main import bot, logger
+from main import BOT
 from datetime import datetime
 from common import Common
 
-@bot.command()
+
+@BOT.command()
 async def getallmessages(ctx):
     try:
         counter = 0
@@ -16,7 +17,7 @@ async def getallmessages(ctx):
         await ctx.send(f"Error: {e}")
 
 
-@bot.command()
+@BOT.command()
 async def getfirstmessage(ctx):
     try:
         first_message = await ctx.history(oldest_first=True, limit=2).flatten()
@@ -30,7 +31,7 @@ async def getfirstmessage(ctx):
         await ctx.send(e)
 
 
-@bot.command()
+@BOT.command()
 async def deletemsg(ctx, id):
     try:
         message_to_delete = await ctx.fetch_message(id)
@@ -44,7 +45,7 @@ async def deletemsg(ctx, id):
         await ctx.send(f"Error: {e}")
 
 
-@bot.command()
+@BOT.command()
 async def deleteallmsgs(ctx):
     try:
         all_messages = await ctx.history().flatten()
@@ -61,7 +62,7 @@ async def deleteallmsgs(ctx):
         await ctx.send(f"Error: {e}")
 
 
-@bot.command()
+@BOT.command()
 async def deletefirst(ctx, num):
     try:
         first_n_msgs = await ctx.history(limit=int(num), oldest_first=True).flatten()
@@ -80,15 +81,15 @@ async def deletefirst(ctx, num):
         await ctx.send(f"Error: {e}")
 
 
-@bot.command(name="getcommands", description="Returns all commands available")
+@BOT.command(name="getcommands", description="Returns all commands available")
 async def getcommands(ctx):
     helptext = "```"
-    for command in bot.commands:
+    for command in BOT.commands:
         helptext+=f"{command}\n"
     helptext += "```"
     await ctx.send(helptext)
 
-@bot.command()
+@BOT.command()
 async def deletionschedule(ctx):
     bot_login_times_file = open("bot_login_times.log", "r")
     bot_login_times = bot_login_times_file.readlines()
@@ -132,7 +133,7 @@ async def deletionschedule(ctx):
             await ctx.send(f"There is {latest_bot_login_plus_time - current_time} left before the next deletion")
 
 
-@bot.command()
+@BOT.command()
 async def getmessagecount(ctx):
     file = open("message_ids.txt", "r")
     all_ids = file.readlines()

@@ -29,4 +29,4 @@ class Logger:
         self.logger.error(message)
 
 
-logger = Logger()
+LOGGER = Logger()
