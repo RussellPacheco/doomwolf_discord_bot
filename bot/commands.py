@@ -1,18 +1,30 @@
 from main import BOT
 from datetime import datetime
 from common import Common
+from db import db
+from discord.ext import commands
+import json
 
-
-@BOT.command(name="getcommands", description="Returns all commands available")
-async def getcommands(ctx):
-    helptext = "```"
-    for command in BOT.commands:
-        helptext+=f"{command}\n"
-    helptext += "```"
-    await ctx.send(helptext)
 
 @BOT.command()
-async def get
+@commands.has_permissions(administrator=True)
+async def add_challenge(ctx):
+    try:
+        challenge = json.loads(ctx.message.content)
+
+        attr = ["name", "description", "options"]
+        for a in attr: 
+            if not hasattr(challenge, a):
+                await ctx.send(f"Challenge missing attribute: {a}")
+                return
+        await ctx.send(f"Challenge {challenge['name']} added!")
+        db.add_challenge(challenge)
+    except Exception as e:
+        await ctx.send(f"Error: {e}")
+
+@BOT.command()
+async def getchallenge(ctx):
+    await ctx.send("getchallenge")
 
 
 # @BOT.command()

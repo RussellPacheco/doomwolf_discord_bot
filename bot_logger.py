@@ -8,9 +8,9 @@ class Logger:
         if not isinstance(numeric_level, int):
             raise ValueError('Invalid log level: %s' % config.log_level)
         logging.basicConfig(level=numeric_level)
-        handler = logging.FileHandler(filename='doomwolf_bot.log', encoding='utf-8', mode='w')
-        handler.setFormatter(logging.Formatter('[%(asctime)s][%(levelname)s][%(name)s] %(message)s'))
-        self.logger.addHandler(handler)
+        self.handler = logging.FileHandler(filename='doomwolf_bot.log', encoding='utf-8', mode='w')
+        self.handler.setFormatter(logging.Formatter('[%(asctime)s][%(levelname)s][%(name)s] %(message)s'))
+        self.logger.addHandler(self.handler)
     def debug(self, message):
         if config.enable_stdout:
             print(f"DEBUG:{message}")

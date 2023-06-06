@@ -12,14 +12,16 @@ print("Starting everything")
 #
 ####################
 
-### DISCORD OPTIONS
-intents = discord.Intents.default()
-intents.members = True
-intents.guild_messages = True
+### DISCORD OPTIONS (guilds, messages, message_content must be True)
+intents = discord.Intents.none()
+intents.guilds = True
+intents.messages = True
+intents.message_content = True
 description = "Let's vote on the next video theme!"
 
 ### Run zee bot!
 LOGGER.info("Bot is running")
 BOT = commands.Bot(command_prefix="$", description=description, intents=intents)
 
-from . import events, commands
+from .events import *
+from .commands import *

@@ -3,19 +3,29 @@ import configparser
 class Config:
     def __init__(self):
         self._config = configparser.ConfigParser()
-        files = self._config.read('doomwolf_bot.conf')
+        files = self._config.read('discord_bot.conf')
         if len(files) == 0 or len(self._config.sections()) == 0:
-            open('doomwolf_bot.conf', 'w').close()
+            open('discord_bot.conf', 'w').close()
             self._config['GENERAL'] = {
-                'Log_Level': 'INFO',
-                'Enable_STDOut': 'True',
+                'log_level': 'INFO',
+                'enable_stdout': 'True',
+                'db_file_path': 'db/discord_bot.db',
+                'login_message': 'oh hi, mark.'
             }
-            with open('doomwolf_bot.conf', 'w') as configfile:
+            self._config['CHANNELS'] = {
+                'main_channel': '',
+                'challenge_channel': '',
+            }
+            with open('discord_bot.conf', 'w') as configfile:
                 self._config.write(configfile)
-            self._config.read('doomwolf_bot.conf')
+            self._config.read('discord_bot.conf')
         for section in self._config.sections():
             for key in self._config[section]:
-                setattr(self, key, self._config[section][key]) 
+                try:
+                    new_value = int(self._config[section][key])
+                    setattr(self, key, new_value)
+                except ValueError:
+                    setattr(self, key, self._config[section][key]) 
 
 
 config = Config()
