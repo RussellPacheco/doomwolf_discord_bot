@@ -1,5 +1,4 @@
 from main import BOT, LOGGER
-from utils import *
 from common import Common
 
 @BOT.event
@@ -25,6 +24,7 @@ async def on_message(message):
 
     if message.author.id in Common.PERSONAL_ID_LIST and message.content[0] == "$":
         if message.author.id == Common.BOBSANDERS_ID:
+            print("Author was BobSanders")
             await message.channel.send("Hey-o Bobby! You got a command for me? Right away, sir!")
             await BOT.process_commands(message)
         else:
